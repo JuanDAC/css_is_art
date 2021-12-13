@@ -1,0 +1,143 @@
+
+//- lighthouse
+
+mixin cone(name, faces, angleRotateX, relativeRadius)
+	- let radian = angleRotateX * Math.PI / 180;
+	- let relativeFaceHeight = relativeRadius / Math.sin(radian);
+	- let relativeFaceWidth = 2 * relativeRadius * Math.tan(Math.PI / faces);
+	
+	div(
+		class=`wrapper-cone ${name}` 
+		style=`
+			--number-faces: ${faces};
+			--angle-rotate-x: ${angleRotateX}deg;
+			--depth: ${relativeRadius};
+			--face__height: ${relativeFaceHeight};
+			--face__width: ${relativeFaceWidth};
+		` 
+	)
+		//- debugger-deep=""
+		- for(let i = 0; i < faces; i++)
+			div(
+				class='face'
+				style=`--i: ${i};`
+			)
+mixin coneTrunk(name, faces, angleRotateX, radiusBottom, radiusTop )
+	- let radian = angleRotateX * Math.PI / 180;
+	- let depth = radiusBottom + radiusTop;
+	- let relativeFaceHeight = radiusBottom / Math.sin(radian);
+	- let relativeFaceWidthBottom = 2 * depth * Math.tan(Math.PI / faces);
+	- let relativeFaceWidthTop = 2 * radiusTop * Math.tan(Math.PI / faces);
+	
+	div(
+		class=`wrapper-cone-trunk ${name}` 
+		style=`
+			--number-faces: ${faces};
+			--angle-rotate-x: ${angleRotateX}deg;
+			--depth: ${depth};
+			--face__height: ${relativeFaceHeight};
+			--face__width-bottom: ${relativeFaceWidthBottom};
+			--face__width-top: ${relativeFaceWidthTop};
+		` 
+	)
+		//- debugger-deep=""
+		- for(let i = 0; i < faces; i++)
+			div(
+				class='face'
+				style=`--i: ${i};`
+			)
+mixin cylinder(name, faces, width, relativeFaceHeight)
+	- let depth = width * 0.5;
+	- let relativeFaceWidth = width * Math.tan(Math.PI / faces);
+	
+	div(
+		class=`wrapper-cylinder ${name}` 
+		style=`
+			--number-faces: ${faces};
+			--depth: ${depth};
+			--face__height: ${relativeFaceHeight};
+			--face__width: ${relativeFaceWidth};
+		` 
+	)
+		//- debugger-deep=""
+		- for(let i = 0; i < faces; i++)
+			div(
+				class='face'
+				style=`--i: ${i};`
+			)
+
+
+
+div(class='css-art-3d-css' aria-hidden='true')
+	div(class='statements')
+		+coneTrunk(
+			/*name: */"lighthouse-ceil lighthouse-poly", 
+			/*faces: */14, 
+			/*angleRotateX: */30, 
+			/*radiusBottom: */20, 
+			/*radiusTop: */2.5
+		)
+		+coneTrunk(
+			/*name: */"lighthouse-crown lighthouse-poly", 
+			/*faces: */14, 
+			/*angleRotateX: */15, 
+			/*radiusBottom: */10, 
+			/*radiusTop: */9
+		)
+		+coneTrunk(
+			/*name: */"lighthouse-trunk lighthouse-poly", 
+			/*faces: */14, 
+			/*angleRotateX: */5, 
+			/*radiusBottom: */10, 
+			/*radiusTop: */8
+		)
+		+cylinder(
+			/*name: */"lighthouse-windows lighthouse-poly", 
+			/*faces: */14, 
+			/*width: */35, 
+			/*height: */60
+		)
+		+cone(
+			/*name: */"lighthouse-light lighthouse-poly", 
+			/*faces: */14, 
+			/*angleRotateX: */30, 
+			/*relativeRadius: */22
+		)
+		+cone(
+			/*name: */"lighthouse-island-lawn-one lighthouse-poly", 
+			/*faces: */14, 
+			/*angleRotateX: */80, 
+			/*relativeRadius: */50
+		)
+		+cone(
+			/*name: */"lighthouse-island-lawn-one lighthouse-poly", 
+			/*faces: */14, 
+			/*angleRotateX: */20, 
+			/*relativeRadius: */50
+		)
+		+cone(
+			/*name: */"lighthouse-island-lawn-two lighthouse-poly", 
+			/*faces: */14,
+			/*angleRotateX: */30, 
+			/*relativeRadius: */50
+		)
+		+cone(
+			/*name: */"lighthouse-island-lawn-three lighthouse-poly", 
+			/*faces: */14,
+			/*angleRotateX: */60, 
+			/*relativeRadius: */80
+		)
+		+cone(
+			/*name: */"lighthouse-island-lawn-three lighthouse-poly", 
+			/*faces: */14,
+			/*angleRotateX: */60, 
+			/*relativeRadius: */80
+		)
+		+cone(
+			/*name: */"sea-one lighthouse-poly", 
+			/*faces: */6,
+			/*angleRotateX: */89, 
+			/*relativeRadius: */200
+		)
+		
+	

@@ -1,0 +1,294 @@
+
+/*********************************************\
+      _      _                                 
+   __| | ___| |__  _   _  __ _  __ _  ___ _ __ 
+  / _` |/ _ \ '_ \| | | |/ _` |/ _` |/ _ \ '__|
+ | (_| |  __/ |_) | |_| | (_| | (_| |  __/ |   
+  \__,_|\___|_.__/ \__,_|\__, |\__, |\___|_|   
+                         |___/ |___/           
+/*********************************************/
+
+*[debugger] {
+	box-shadow: 0px 0px 0px 1px inset red;
+}
+*[debugger-deep] *,
+*[debugger-deep] {
+	box-shadow: 0px 0px 0px 1px inset red;
+}
+*[debugger-adjacent] > *,
+*[debugger-adjacent] {
+	box-shadow: 0px 0px 0px 1px inset red;
+}
+*[debugger-first-child] ~ *,
+*[debugger-first-child] {
+	box-shadow: 0px 0px 0px 1px inset red;
+}
+
+/******************************************************************************\
+                  _       _     _                    __       _         _      
+ __   ____ _ _ __(_) __ _| |__ | | ___  ___    ___  / _|  ___| |_ _   _| | ___ 
+ \ \ / / _` | '__| |/ _` | '_ \| |/ _ \/ __|  / _ \| |_  / __| __| | | | |/ _ \
+  \ V / (_| | |  | | (_| | |_) | |  __/\__ \ | (_) |  _| \__ \ |_| |_| | |  __/
+   \_/ \__,_|_|  |_|\__,_|_.__/|_|\___||___/  \___/|_|   |___/\__|\__, |_|\___|
+                                                                  |___/        
+/******************************************************************************/
+.css-art-3d-css {
+	--unit-view: calc(var(--view) / 100);
+	--url-grass: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.spriters-resource.com%2Fresources%2Fsheets%2F112%2F114823.png&f=1&nofb=1") ;
+	--url-dog-duck: url("https://i.pinimg.com/originals/20/fc/4f/20fc4fe2c41262ed46c246d44f10ccbf.png");
+	--url-cursor-sight: url("https://www.cursor.cc/cursor/10/0/cursor.png") 16 16, crosshair;
+	--url-dog-duck__size-width: calc(var(--view) * 0.6) ;
+	--gradient-ceil: radial-gradient(farthest-corner at 75% 10%, #B9DCF6, #3fbfff);
+	--gradient-bullet: linear-gradient(90deg, #654923 20%, #ffd953, #654923, #9A7B34, #96c2b1 95%);
+	--color-foreground-blue: #52AEDE;
+	--color-alert__border: #7DC106;
+}
+@function view($size) {
+	@return calc(var(--unit-view) * #{$size});
+}
+
+// .css-art-3d-css,
+.css-art-3d-css {
+	overflow: hidden;
+	background-image: linear-gradient(180deg, #0090ea, #033c66);
+}
+.css-art-3d-css * {
+	transform-style: preserve-3d;
+}
+
+.css-art-3d-css,
+.statements {
+	height: view(100);
+	width: view(100);
+	display: grid;
+	place-content: center;
+	position: relative;
+}
+
+.wrapper-cone {
+	display: grid;
+	height: view(var(--face__height));
+	width: view(var(--face__height));
+	place-content: center;
+	transform-style: preserve-3d;
+
+}
+
+.wrapper-cone .face {
+	--p: calc(var(--i)/var(--number-faces));
+	display: grid;
+	width: view(var(--face__width));
+	height: view(var(--face__height));
+	transform-origin: 50% 100%;
+	transform: 
+		rotateY(calc(var(--p) * 1turn))
+		translateZ(view(var(--depth)))
+		rotateX(var(--angle-rotate-x))
+	;
+	background-image: linear-gradient(50deg, var(--faces-color__one),  var(--faces-color__two));
+	clip-path: polygon(50% 0, 100% 100%, 0 100%);
+	grid-area: 1 / 1;
+}
+
+
+
+
+.wrapper-cone-trunk {
+	display: grid;
+	height: view(calc(var(--face__height) * 1.05));
+	width: view(calc(var(--face__height) * 0.70));
+	place-content: center;
+	transform-style: preserve-3d;
+}
+
+.wrapper-cone-trunk .face {
+	--p: calc(var(--i)/var(--number-faces));
+	display: grid;
+	width: view(var(--face__width-bottom));
+	height: view(var(--face__height));
+	transform-origin: 50% 100%;
+	transform: 
+		rotateY(calc(var(--p) * 1turn))
+		translateZ(view(var(--depth)))
+		rotateX(var(--angle-rotate-x))
+	;
+	background-image: linear-gradient(50deg, var(--faces-color__one),  var(--faces-color__two));
+	clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
+	grid-area: 1 / 1;
+}
+
+.wrapper-cylinder {
+	display: grid;
+	height: view(var(--face__height));
+	width: view(var(--face__height));
+	place-content: center;
+}
+
+.wrapper-cylinder .face {
+	
+	--p: calc(var(--i)/var(--number-faces));
+	display: grid;
+	width: view(var(--face__width));
+	height: view(var(--face__height));
+	transform-origin: 50% 50%;
+	transform: 
+		rotateY(calc(var(--p) * 1turn))
+		translateZ(view(var(--depth)))
+	;
+	background-image: linear-gradient(50deg, var(--faces-color__one),  var(--faces-color__two));
+	grid-area: 1 / 1;
+}
+
+.lighthouse-poly {
+	--lighthouse-poly__transform: scale(0.5);
+	transform: var(--lighthouse-poly__transform);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.lighthouse-crown {
+	transform:
+		scaleY(0.3) 
+		scaleX(0.8) 
+		translate3d(view(33), view(40), view(0))
+	;
+}
+.lighthouse-ceil {
+	transform:
+		var(--lighthouse-poly__transform) 
+		scaleY(0.5)
+		scaleX(1.25) 
+		translate3d(view(42), view(-30), view(0))
+	;
+}
+.lighthouse-windows {
+	transform:
+		var(--lighthouse-poly__transform) 
+		scaleY(0.5)
+		scaleX(1.25) 
+		translate3d(view(16), view(-16), view(0))
+	;
+}
+.lighthouse-trunk,
+.lighthouse-ceil,
+.lighthouse-crown {
+	--faces-color__one: hsl(6, 98%, 61%);
+	--faces-color__two: hsl(20, 95%, 69%);
+}
+.lighthouse-windows {
+	--faces-color__one: hsl(191, 98%, 61%);
+	--faces-color__two: hsla(20, 95%, 69%, 0.6);
+}
+
+
+.lighthouse-light {
+	
+	
+	transform-origin: 50% 0%; 
+	
+	transform:
+		translate3d(view(18.5), view(25), view(30))
+		scale3d(1, 1, 5) 
+		rotateZ(90deg)
+		rotateX(270deg) // rotate
+	;
+	animation: rotate-light 10s linear 0s infinite;
+}
+
+.lighthouse-light .face{
+	background: none;
+	box-shadow:  0px view(45) view(20) view(-40) #fddb9c inset;
+}
+
+
+.lighthouse-island-lawn-one {
+	
+	--faces-color__one: hsl(167, 24%, 43%);  
+	--faces-color__two: hsl(78, 98%, 40%);
+	transform:
+		translate3d(view(24), view(45), view(0))
+	;
+}
+
+.lighthouse-island-lawn-two {
+	
+	--faces-color__one: hsl(167, 24%, 43%);  
+	--faces-color__two: hsl(78, 98%, 40%);
+	transform:
+		translate3d(view(-35), view(30), view(20))
+		scale3d(1, 0.75, 1)
+	;
+}
+
+.lighthouse-island-lawn-three {
+
+	--faces-color__one: hsl(167, 24%, 43%);  
+	--faces-color__two: hsl(78, 98%, 40%);
+	transform:
+		translate3d(view(15), view(15), view(40))
+		scale3d(1, 1, 1)
+}
+
+.sea-one {
+	--faces-color__one: hsl(191, 98%, 58%);
+	--faces-color__two: hsl(188, 100%, 64%);
+	transform:
+		scale(20)
+		rotate3d(0, 0, -1, 5deg)
+		translate3d(view(0), view(-97), view(0))
+		scale3d(1, 1, 1)
+	;
+}
+
+
+.statements {
+	transform: scale(0.3) rotate3d(0, 0.8, -0.2, -180deg);
+	transition: all 1s ease-in-out;
+}
+.statements:hover {
+	transform: scale(0.3) rotate3d(0, 1, -0.2, -180deg);
+}
+
+@keyframes rotate-light {
+	0% {
+		transform:
+			translate3d(view(50), view(25), view(0))
+			scale3d(5, 1, 1) 
+			rotateZ(90deg)
+			rotateX(0deg)
+		;
+	}
+	25% {
+		transform:
+			translate3d(view(18.5), view(25), view(-30))
+			scale3d(1, 1, 5) 
+			rotateZ(90deg)
+			rotateX(90deg)
+		;
+	}
+	50% {
+		transform:
+			translate3d(view(-15), view(25), view(0))
+			scale3d(5, 1, 1) 
+			rotateZ(90deg)
+			rotateX(180deg)
+		;
+	}
+	75% {
+		transform:
+			translate3d(view(18.5), view(25), view(30))
+			scale3d(1, 1, 5) 
+			rotateZ(90deg)
+			rotateX(270deg)
+		;
+	}
+	100% {
+		transform:
+			translate3d(view(50), view(25), view(0))
+			scale3d(5, 1, 1) 
+			rotateZ(90deg)
+			rotateX(360deg)
+		;
+	}
+} 
